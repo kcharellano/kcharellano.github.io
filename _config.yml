@@ -59,7 +59,7 @@ plugins:
 
 author:
   name   : "Kevin Christopher Arellano"
-  avatar : "/assets/images/bio-photo.jpg"
+  avatar : "/assets/images/linkedin.png"
   bio    : "Passionate coder who loves working on interesting projects."
   links:
     - label: "Website"
