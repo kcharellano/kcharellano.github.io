@@ -3,9 +3,6 @@ title: "UFC Score Bot: Web Crawler"
 date: 2020-11-21T15:34:30-04:00
 categories:
   - blog
-tags:
-  - Jekyll
-  - update
 ---
 
 UFCScoreBot is an automated fighter record retriever built to work with [Reddit](https://www.reddit.com/). It was created for the purpose of getting UFC fighter records without having to leave the site and is tied to a Reddit account with the name `/u/UFCScoreBot`. It can be activated by mentioning its username in a comment along with the name of a UFC fighter. It will return the fighter's record in the form of a reply to the invoking user.
@@ -15,6 +12,7 @@ UFCScoreBot is an automated fighter record retriever built to work with [Reddit]
 
 ## The Bot
 The Bot is a constantly running service written in Python and connected to Reddit using PRAW which stands for Public Reddit API Wrapper. It uses this API to listen for "mentions" i.e comments that contain its username `/u/UFCScoreBot`. After it receives a mention notification it then parses the comment where it was mentioned and retrieves the UFC fighter's name in a first and last form. The code for the Bot part is fairly short and I have included it below.
+
 ```python
 import praw
 import sys

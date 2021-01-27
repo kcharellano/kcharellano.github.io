@@ -1,6 +1,6 @@
 ---
 title: "HuluParty: Remote Video Synchronizer"
-date: 2019-04-18T15:34:30-04:00
+date: 2020-10-21T15:34:30-04:00
 categories:
   - blog
 tags:
@@ -8,22 +8,12 @@ tags:
   - update
 ---
 
-You'll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+HuluParty is a Hulu video synchronizer created to allow multiple people to synchronize their shows/movies with eachother. It is made up of two components: a chrome extension and a web server. The chrome extension forms the interace and is responsible for creating sessions, and sending synchronization updates to the server. The web server is an intermediary that stores session data and delegates synchronization updates.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+<div>
+  <img style="text-align: left" src="/assets/gifs/shrek_gif.gif" width = "310" height = "200"/>
+  <img style="test-align: right" src="/assets/gifs/shrek_gif.gif" width = "310" height = "200"/>
+</div>
 
-Jekyll also offers powerful support for code snippets:
-
-```ruby
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
-```
-
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
-
-[jekyll-docs]: https://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+# In-Depth
+sdasdadsa
