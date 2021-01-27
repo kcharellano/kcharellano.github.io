@@ -54,5 +54,12 @@ The last main responsibility of the server is to respond to *events*. Events are
 
 ## The Chrome Extension
 
-The chrome extension forms the client part of this project and is responsible for reacting to user generated video updates like seeking the video or changing its play/pause state. Hulu doesn't have a public API, meaning that there is no official way to programatically communicate with or manipulate a video on its website. The client circumvents this by instead pulling information from and manipulating the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) which is basically the HTML representation of a web page.
+The chrome extension forms the client part of this project and is responsible for reacting to user generated video updates like seeking the video or changing its play/pause state. Hulu doesn't have a public API, meaning that there is no official way to programatically communicate with or manipulate a video on its website. The client circumvents this by instead pulling information from and manipulating the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) which is the HTML representation of a web page.
 
+As mentioned before, the chrome extension acts as the interface for HuluParty. To create a session you first need be on a hulu video. The extension icon will then become "active", meaning it becomes clickable. After clicking on the extension icon the following popup will appear.
+
+<img style="margin-left: 100px;" src="/assets/images/popup_cap.png" width = "410" height = "300"/>
+
+Pressing the "create session" button will automatically place the invoking user in a session and also fill the textbox with a link. This link can be share with other Hulu users to take them to the correct video. After a user uses a join link to arrive at the correct video they can press the "join session" button which will then place them in the session. From then on, any video updates like seeking, playing or pausing will be sent and received by all users in the session. 
+
+The code for the server can be found [here](https://github.com/kcharellano/huluparty-server) and the code for the client can be found [here](https://github.com/kcharellano/huluparty-client). If you made it this far, thanks for reading!
