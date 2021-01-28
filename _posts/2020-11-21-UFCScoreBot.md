@@ -3,6 +3,10 @@ title: "UFC Score Bot: Web Crawler"
 date: 2020-11-21T15:34:30-04:00
 categories:
   - blog
+tags:
+  - UFCScoreBot
+  - Web Crawler
+  - Web Scraper
 ---
 
 UFCScoreBot is an automated fighter record retriever built to work with [Reddit](https://www.reddit.com/). It was created for the purpose of getting UFC fighter records without having to leave the site and is tied to a Reddit account with the name `/u/UFCScoreBot`. It can be activated by mentioning its username in a comment along with the name of a UFC fighter. It will return the fighter's record in the form of a reply to the invoking user.
