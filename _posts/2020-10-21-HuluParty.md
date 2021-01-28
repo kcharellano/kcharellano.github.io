@@ -8,7 +8,7 @@ tags:
   - Chrome Extension
 ---
 
-HuluParty is a Hulu video synchronizer created to allow multiple people to synchronize their shows/movies with eachother. It is made up of two components: a chrome extension and a web server. The chrome extension forms the interace and is responsible for creating sessions, and sending synchronization updates to the server. The web server is an intermediary that stores session data and delegates synchronization updates.
+HuluParty is a Hulu video synchronizer created to allow multiple people to synchronize their shows/movies with eachother. It is made up of two components: a chrome extension and a web server. The chrome extension forms the interface and is responsible for creating sessions, and sending synchronization updates to the server. The web server stores session/user data and delegates synchronization updates.
 
 <div>
   <img style="text-align: left" src="/assets/gifs/shrek_gif.gif" width = "310" height = "200"/>
@@ -16,9 +16,9 @@ HuluParty is a Hulu video synchronizer created to allow multiple people to synch
 </div>
 
 # In-Depth
-> Before I continue I just want to note that this project is in no way affiliated with [Hulu Watch Party](https://help.hulu.com/s/article/watch-party).In fact, I finished this project almost two months before they released their offical version.
+> Before I continue I just want to note that this project is in no way affiliated with [Hulu Watch Party](https://help.hulu.com/s/article/watch-party). In fact, I finished this project almost two months before they released their official version.
 
-HuluParty was written in javascript and was built using a [Client-Server](https://en.wikipedia.org/wiki/Client%E2%80%93server_model) model. Both the chrome extension(client) and web server(server) communicate using [socket.io](https://socket.io/docs/v3/index.html),
+HuluParty was built using a [Client-Server](https://en.wikipedia.org/wiki/Client%E2%80%93server_model) model. Both the chrome extension(client) and web server(server) communicate using [socket.io](https://socket.io/docs/v3/index.html),
 a websocket library that allows for real-time, bidirectional event based communication.
 
 In the following sections I will go over each component in detail.
@@ -29,14 +29,14 @@ The server keeps track of all sessions. A session is what allows users to receiv
 '84dba68dcea2952c': {
   sessionId: '84dba68dcea2952c', // uniqueID for session
   lastActivity: '2021-01-27T20:19:10.596Z', // the last time this session was updated
-  lastVideoPos: 1800, // the last playback position of the video in milliseconds
+  lastVideoPos: 1800, // the last playback position of the video in seconds
   state: 'playing', // whether the video is playing or paused
   videoId: 123, // the ID Hulu assigns to all videos
   users: ['3d16d961f67e9792'] // a list of participating user IDs
 }
 ```
 
-Ther server also keeps track of all the users currently connected to the server. A user automatically connects to the server by activating the HuluParty extension while being on the Hulu website and can disconnect by leaving the website. Like sessions, users are also stores in-memory. A typical user entry looks like the following.
+Ther server also keeps track of all the users currently connected to the server. A user automatically connects to the server by activating the HuluParty extension while playing a Hulu video and can disconnect by leaving the website or refreshing the page. Like sessions, users are also stored in-memory. A typical user entry looks like the following.
 ```javascript
   '3d16d961f67e9792': {
     userId: '3d16d961f67e9792', // uniqueID for the user
@@ -54,9 +54,9 @@ The last main responsibility of the server is to respond to *events*. Events are
 
 ## The Chrome Extension
 
-The chrome extension forms the client part of this project and is responsible for reacting to user generated video updates like seeking the video or changing its play/pause state. Hulu doesn't have a public API, meaning that there is no official way to programatically communicate with or manipulate a video on its website. The client circumvents this by instead pulling information from and manipulating the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) which is the HTML representation of a web page.
+The chrome extension forms the client part of this project and is responsible for reacting to user generated video updates like seeking or changing the play/pause state. Hulu doesn't have a public API, meaning that there is no official way to programatically communicate with or manipulate a video on its website. The client circumvents this by instead pulling information from and manipulating the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction) which is the HTML representation of the web page.
 
-As mentioned before, the chrome extension acts as the interface for HuluParty. To create a session you first need be on a hulu video. The extension icon will then become "active", meaning it becomes clickable. After clicking on the extension icon the following popup will appear.
+As mentioned before, the chrome extension acts as the interface for HuluParty. To create a session you first need be on a Hulu video. The extension icon will then become "active", meaning it becomes clickable. After clicking on the extension icon the following popup will appear.
 
 <img style="margin-left: 100px;" src="/assets/images/popup_cap.png" width = "410" height = "300"/>
 
