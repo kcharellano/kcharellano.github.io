@@ -9,13 +9,14 @@ tags:
   - Web Scraper
 ---
 
-UFCScoreBot is an automated fighter record retriever built to work with [Reddit](https://www.reddit.com/). It was created for the purpose of getting UFC fighter records without having to leave the site and is tied to a Reddit account with the name `/u/UFCScoreBot`. It can be activated by mentioning its username in a comment along with the name of a UFC fighter. It will return the fighter's record in the form of a reply to the invoking user.
+UFCScoreBot is an automated fighter record retriever built to work with [Reddit](https://www.reddit.com/). It was created for the purpose of getting UFC fighter records without having to leave the site and is tied to a Reddit account with the name `/u/UFCScoreBot`. It can be activated by mentioning its username in a comment along with the name of a UFC fighter. It will then return the fighter's record in the form of a reply to the invoking user.
 <div style= "text-align: center"><img src="/assets/images/reddit_logo.png" width = "200" height = "200"/></div>
 
 # In-Depth
+UFCScoreBot is made up of two components. The bot which listens for requests and the web crawler which searches a ufc fighter statistics website and for the fighter's record. The following sections go over each component in detail.
 
 ## The Bot
-The Bot is a constantly running service written in Python and connected to Reddit using PRAW which stands for Public Reddit API Wrapper. It uses this API to listen for "mentions" i.e comments that contain its username `/u/UFCScoreBot`. After it receives a mention notification it then parses the comment where it was mentioned and retrieves the UFC fighter's name in a first and last form. The code for the Bot part is fairly short and I have included it below.
+The bot is a constantly running service written in Python and connected to Reddit using [PRAW](https://praw.readthedocs.io/en/latest/) which stands for Public Reddit API Wrapper. It uses this API to listen for "mentions" i.e comments that contain its username `/u/UFCScoreBot`. After it receives a mention it then parses the comment where it was mentioned and retrieves the UFC fighter's first and last name. The code for the bot is shown below.
 
 ```python
 import praw
@@ -88,12 +89,12 @@ if __name__ == "__main__":
     mybot.start()
 ```
 
-## The Crawler
-After a name has been retrieved, the Bot makes a call to [Scrapy](https://scrapy.org/), a web scraping framework, and passes it the name as well as a spider. A spider is what Scrapy uses to allow for custom crawling and scraping. For this project I named my spider charlotte(after charlotte's web) and she can be invoked using the following line: 
+## The Web Crawler
+After a name has been retrieved, the bot makes a call to [Scrapy](https://scrapy.org/), a web scraping framework, and passes it the name as well as a spider file. A spider is what Scrapy uses to allow for custom website nagivation and HTML parsing. For this project I named my spider charlotte(after [charlotte's web](https://en.wikipedia.org/wiki/Charlotte%27s_Web)) and she is invoked using the following line: 
 
-* `scrapy crawl -a last={last_name} -a first={first_name} charlotte`. 
+* `scrapy crawl -a last={last_name} -a first={first_name} charlotte`
 
-The spider then searches [www.ufcstats.com](http://ufcstats.com) for the fighters page and then once on the page it looks for that fighters record and saves it to a file in JSON format. The Bot then uses the contents of this file to form a reply to the invoking user. Since the code for the spider is fairly short as well I have included it below.
+The spider then navigates [www.ufcstats.com](http://ufcstats.com) to the fighter's page, searches the page for the fighter's record, and saves it to a file in JSON format. The bot then uses the contents of this file to form a reply to the invoking user. The code for the spider is shown below.
 
 ```python
 import scrapy
@@ -173,5 +174,10 @@ class ScoreSpider(scrapy.Spider):
         return item        
 
 ```
+## The Result
+The reply returned from the bot looks like this.
 
-Here is a [link](https://github.com/kcharellano/UFCScoreBot) to the github repository. If you made it this far, thanks for reading!
+<div style= "text-align: center"><img src="/assets/images/reply_example.png" width = "600" height = "600"/></div>
+
+
+Here is a [link](https://github.com/kcharellano/UFCScoreBot) to the code for this project. If you made it this far, thanks for reading!
