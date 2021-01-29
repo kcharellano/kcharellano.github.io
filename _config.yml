@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "Kevin Christopher Arellano"
   avatar : "/assets/images/linkedin.png"
-  bio    : "Passionate coder who loves working on interesting projects."
+  bio    : "Passionate coder who loves working on interesting projects. If you would like to reach out, you can contact me at kcharellano@gmail.com"
   links:
     - label: "Website"
       icon: "fas fa-fw fa-link"
